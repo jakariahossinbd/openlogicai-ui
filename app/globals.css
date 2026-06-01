@@ -1,0 +1,195 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
+
+/* Default CSS variables - will be overridden by theme classes on html */
+:root {
+  --radius: 0.5rem;
+}
+
+/* Dark Theme (Master UI) */
+html.dark {
+  --background: #0d0d0f;
+  --background-secondary: #0a0a0c;
+  --foreground: #e5e5e5;
+  --foreground-secondary: #a3a3a3;
+  --foreground-muted: #737373;
+  --foreground-subtle: #525252;
+  --card: rgba(255, 255, 255, 0.02);
+  --card-elevated: rgba(255, 255, 255, 0.03);
+  --card-foreground: #e5e5e5;
+  --popover: rgba(255, 255, 255, 0.03);
+  --popover-foreground: #e5e5e5;
+  --primary: #22d3ee;
+  --primary-foreground: #0d0d0f;
+  --primary-muted: rgba(34, 211, 238, 0.1);
+  --primary-border: rgba(34, 211, 238, 0.2);
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #e5e5e5;
+  --muted: rgba(255, 255, 255, 0.04);
+  --muted-foreground: #737373;
+  --accent: rgba(34, 211, 238, 0.1);
+  --accent-foreground: #22d3ee;
+  --destructive: #ef4444;
+  --destructive-foreground: #fecaca;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #22d3ee;
+  --icon-bg: #1e1e1e;
+  --hover: rgba(255, 255, 255, 0.03);
+  --hover-elevated: rgba(255, 255, 255, 0.06);
+  --chart-1: #22d3ee;
+  --chart-2: #a855f7;
+  --chart-3: #22c55e;
+  --chart-4: #f97316;
+  --chart-5: #ef4444;
+  --sidebar: rgba(255, 255, 255, 0.02);
+  --sidebar-foreground: #e5e5e5;
+  --sidebar-primary: #22d3ee;
+  --sidebar-primary-foreground: #0d0d0f;
+  --sidebar-accent: rgba(34, 211, 238, 0.1);
+  --sidebar-accent-foreground: #22d3ee;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #22d3ee;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.15);
+}
+
+/* Light Theme - Premium soft appearance inspired by Gemini Desktop */
+/* Uses soft off-white surfaces with gentle shadows, preserving OpenLogic AI accent colors */
+html.light {
+  --background: #f8f9fa;
+  --background-secondary: #f1f3f5;
+  --foreground: #1f2937;
+  --foreground-secondary: #4b5563;
+  --foreground-muted: #6b7280;
+  --foreground-subtle: #9ca3af;
+  --card: rgba(255, 255, 255, 0.85);
+  --card-elevated: rgba(255, 255, 255, 0.95);
+  --card-foreground: #1f2937;
+  --popover: rgba(255, 255, 255, 0.95);
+  --popover-foreground: #1f2937;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --primary-muted: rgba(8, 145, 178, 0.08);
+  --primary-border: rgba(8, 145, 178, 0.2);
+  --secondary: rgba(0, 0, 0, 0.03);
+  --secondary-foreground: #1f2937;
+  --muted: rgba(0, 0, 0, 0.02);
+  --muted-foreground: #6b7280;
+  --accent: rgba(8, 145, 178, 0.08);
+  --accent-foreground: #0891b2;
+  --destructive: #dc2626;
+  --destructive-foreground: #fef2f2;
+  --border: rgba(0, 0, 0, 0.06);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.03);
+  --ring: #0891b2;
+  --icon-bg: #f1f3f5;
+  --hover: rgba(0, 0, 0, 0.02);
+  --hover-elevated: rgba(0, 0, 0, 0.04);
+  --chart-1: #0891b2;
+  --chart-2: #9333ea;
+  --chart-3: #16a34a;
+  --chart-4: #ea580c;
+  --chart-5: #dc2626;
+  --sidebar: rgba(255, 255, 255, 0.7);
+  --sidebar-foreground: #1f2937;
+  --sidebar-primary: #0891b2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(8, 145, 178, 0.08);
+  --sidebar-accent-foreground: #0891b2;
+  --sidebar-border: rgba(0, 0, 0, 0.06);
+  --sidebar-ring: #0891b2;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.12);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.18);
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-card: var(--card);
+  --color-card-elevated: var(--card-elevated);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-muted: var(--primary-muted);
+  --color-primary-border: var(--primary-border);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-icon-bg: var(--icon-bg);
+  --color-hover: var(--hover);
+  --color-hover-elevated: var(--hover-elevated);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Smooth transitions for all themed elements */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
