@@ -14,6 +14,8 @@ import {
   User,
   Code2,
   Sparkles,
+  Cpu,
+  Wrench,
 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
@@ -97,33 +99,47 @@ export function ChatSidebar() {
 
       {/* Composer */}
       <div className="shrink-0 border-t border-border/50 p-3">
-        <div className="rounded-xl border border-border/50 bg-background/80 backdrop-blur-sm p-2.5">
-          <textarea
-            ref={textareaRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask AI to help with your code..."
-            rows={1}
-            className="w-full resize-none bg-transparent text-[12px] text-foreground-secondary placeholder:text-foreground-subtle focus:outline-none leading-relaxed"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault()
-                if (input.trim()) {
-                  setMessages([...messages, {
-                    id: Date.now().toString(),
-                    role: "user",
-                    content: input,
-                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                  }])
-                  setInput("")
+        <div className="rounded-xl border border-border/50 bg-background/80 backdrop-blur-sm overflow-hidden">
+          {/* Textarea */}
+          <div className="px-3 pt-3 pb-2">
+            <textarea
+              ref={textareaRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask AI to help with your code..."
+              rows={1}
+              className="w-full resize-none bg-transparent text-[12px] text-foreground-secondary placeholder:text-foreground-subtle focus:outline-none leading-relaxed"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault()
+                  if (input.trim()) {
+                    setMessages([...messages, {
+                      id: Date.now().toString(),
+                      role: "user",
+                      content: input,
+                      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+                    }])
+                    setInput("")
+                  }
                 }
-              }
-            }}
-          />
-          <div className="flex items-center justify-between mt-2">
+              }}
+            />
+          </div>
+
+          {/* Action row */}
+          <div className="flex items-center justify-between border-t border-border/30 px-2 py-1.5">
             <div className="flex items-center gap-0.5">
-              <button className="rounded-md p-1.5 text-foreground-subtle transition-colors hover:bg-hover hover:text-foreground-muted">
+              <button
+                title="Attach file"
+                className="rounded-md p-1.5 text-foreground-subtle transition-colors hover:bg-hover hover:text-foreground-muted"
+              >
                 <Paperclip className="h-3.5 w-3.5" />
+              </button>
+              <button
+                title="Voice input"
+                className="rounded-md p-1.5 text-foreground-subtle transition-colors hover:bg-hover hover:text-foreground-muted"
+              >
+                <Mic className="h-3.5 w-3.5" />
               </button>
             </div>
             <button
@@ -139,11 +155,18 @@ export function ChatSidebar() {
           </div>
         </div>
 
-        {/* Model picker */}
-        <div className="mt-2 flex items-center gap-1.5">
+        {/* Model + Agent selectors */}
+        <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+          {/* Model dropdown */}
           <button className="flex items-center gap-1 rounded-md border border-border/50 bg-card/50 px-2 py-1 text-[10px] text-foreground-secondary transition-colors hover:bg-hover">
-            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-            <span>Agent</span>
+            <Cpu className="h-3 w-3 text-primary" />
+            <span>GPT 5.5 Codex</span>
+            <ChevronDown className="h-2.5 w-2.5 text-foreground-subtle" />
+          </button>
+          {/* Agent dropdown */}
+          <button className="flex items-center gap-1 rounded-md border border-border/50 bg-card/50 px-2 py-1 text-[10px] text-foreground-secondary transition-colors hover:bg-hover">
+            <Wrench className="h-3 w-3 text-cyan-400" />
+            <span>Code Agent</span>
             <ChevronDown className="h-2.5 w-2.5 text-foreground-subtle" />
           </button>
         </div>

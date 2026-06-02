@@ -223,3 +223,21 @@ html.light .glass-elevated {
 html.light .glow-primary {
   box-shadow: 0 0 20px rgba(8, 145, 178, 0.1);
 }
+
+/* Right panel slide-in animation */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Voice waveform bar animation */
+@keyframes voiceIdle {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
