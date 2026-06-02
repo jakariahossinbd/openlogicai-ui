@@ -181,37 +181,37 @@ export function ConsumerCanvas({ activeMode, onModeChange }: ConsumerCanvasProps
 // ─── Chat Content ─────────────────────────────────────────────────────────────
 function ChatContent() {
   return (
-    <div className="flex flex-col items-center justify-center gap-8 text-center">
-      {/* Premium smooth glow icon */}
+    <div className="flex flex-col items-center justify-center gap-6 text-center">
+      {/* Premium smooth cinematic glow icon */}
       <div className="relative flex items-center justify-center">
-        {/* Outer atmospheric glow — large, very soft */}
+        {/* Ultra-diffused outer glow — cinematic, no banding */}
         <div
-          className="absolute rounded-full"
+          className="absolute rounded-full pointer-events-none"
           style={{
-            width: "200px",
-            height: "200px",
-            background: "radial-gradient(circle, rgba(34,211,238,0.18) 0%, rgba(34,211,238,0.07) 45%, transparent 70%)",
-            filter: "blur(24px)",
+            width: "280px",
+            height: "280px",
+            background: "radial-gradient(circle at center, rgba(56,189,248,0.15) 0%, rgba(56,189,248,0.06) 40%, rgba(56,189,248,0) 70%)",
+            filter: "blur(100px)",
           }}
         />
-        {/* Inner glow ring */}
+        {/* Soft inner accent glow */}
         <div
-          className="absolute rounded-full"
+          className="absolute rounded-full pointer-events-none"
           style={{
-            width: "110px",
-            height: "110px",
-            background: "radial-gradient(circle, rgba(34,211,238,0.25) 0%, transparent 70%)",
-            filter: "blur(12px)",
+            width: "140px",
+            height: "140px",
+            background: "radial-gradient(circle at center, rgba(56,189,248,0.12) 0%, rgba(56,189,248,0) 70%)",
+            filter: "blur(60px)",
           }}
         />
-        <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-xl">
-          <Bot className="h-10 w-10 text-primary" />
+        <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-xl">
+          <Bot className="h-8 w-8 text-primary" />
         </div>
       </div>
 
-      <div className="space-y-3">
-        <h1 className="text-3xl font-semibold text-foreground text-balance">How can I help you today?</h1>
-        <p className="max-w-md text-[15px] text-foreground-muted text-pretty leading-relaxed">
+      <div className="space-y-2">
+        <h1 className="text-lg font-medium text-foreground-secondary text-balance">How can I help you today?</h1>
+        <p className="max-w-md text-sm text-foreground-muted/80 text-pretty leading-relaxed">
           Ask me anything — writing, analysis, coding, math, and more.
         </p>
       </div>
@@ -240,34 +240,36 @@ function ChatContent() {
 // ─── Image Content ────────────────────────────────────────────────────────────
 function ImageContent() {
   return (
-    <div className="flex flex-col items-center justify-center gap-8 text-center">
+    <div className="flex flex-col items-center justify-center gap-6 text-center">
       <div className="relative flex items-center justify-center">
+        {/* Ultra-diffused outer glow — cinematic, no banding */}
         <div
-          className="absolute rounded-full"
+          className="absolute rounded-full pointer-events-none"
           style={{
-            width: "200px",
-            height: "200px",
-            background: "radial-gradient(circle, rgba(34,211,238,0.15) 0%, rgba(168,85,247,0.1) 45%, transparent 70%)",
-            filter: "blur(28px)",
+            width: "280px",
+            height: "280px",
+            background: "radial-gradient(circle at center, rgba(56,189,248,0.12) 0%, rgba(168,85,247,0.08) 35%, rgba(168,85,247,0) 70%)",
+            filter: "blur(100px)",
           }}
         />
+        {/* Soft inner accent glow */}
         <div
-          className="absolute rounded-full"
+          className="absolute rounded-full pointer-events-none"
           style={{
-            width: "110px",
-            height: "110px",
-            background: "radial-gradient(circle, rgba(34,211,238,0.2) 0%, transparent 70%)",
-            filter: "blur(14px)",
+            width: "140px",
+            height: "140px",
+            background: "radial-gradient(circle at center, rgba(56,189,248,0.1) 0%, rgba(56,189,248,0) 70%)",
+            filter: "blur(60px)",
           }}
         />
-        <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-xl">
-          <Sparkles className="h-10 w-10 text-cyan-400" />
+        <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-xl">
+          <Sparkles className="h-8 w-8 text-cyan-400" />
         </div>
       </div>
 
-      <div className="space-y-3">
-        <h1 className="text-3xl font-semibold text-foreground text-balance">Create stunning images</h1>
-        <p className="max-w-md text-[15px] text-foreground-muted text-pretty leading-relaxed">
+      <div className="space-y-2">
+        <h1 className="text-lg font-medium text-foreground-secondary text-balance">Create stunning images</h1>
+        <p className="max-w-md text-sm text-foreground-muted/80 text-pretty leading-relaxed">
           Describe what you envision and it will be generated in seconds.
         </p>
       </div>
@@ -363,26 +365,26 @@ function VoiceCanvas() {
       <div className="flex flex-1 flex-col items-center justify-center w-full max-w-2xl gap-10">
         {/* Central orb + glow */}
         <div className="relative flex items-center justify-center">
-          {/* Outermost atmospheric glow */}
+          {/* Ultra-diffused outer glow — cinematic, no banding */}
           <div
-            className="absolute rounded-full transition-all duration-500"
+            className="absolute rounded-full transition-all duration-500 pointer-events-none"
             style={{
-              width: listening ? "320px" : "220px",
-              height: listening ? "320px" : "220px",
+              width: listening ? "360px" : "280px",
+              height: listening ? "360px" : "280px",
               background: listening
-                ? "radial-gradient(circle, rgba(168,85,247,0.22) 0%, rgba(168,85,247,0.08) 45%, transparent 70%)"
-                : "radial-gradient(circle, rgba(168,85,247,0.12) 0%, rgba(168,85,247,0.04) 50%, transparent 70%)",
-              filter: "blur(32px)",
+                ? "radial-gradient(circle at center, rgba(168,85,247,0.18) 0%, rgba(168,85,247,0.06) 40%, rgba(168,85,247,0) 70%)"
+                : "radial-gradient(circle at center, rgba(168,85,247,0.1) 0%, rgba(168,85,247,0.03) 45%, rgba(168,85,247,0) 70%)",
+              filter: "blur(100px)",
             }}
           />
-          {/* Mid glow */}
+          {/* Soft inner accent glow */}
           <div
-            className="absolute rounded-full transition-all duration-500"
+            className="absolute rounded-full transition-all duration-500 pointer-events-none"
             style={{
-              width: listening ? "160px" : "100px",
-              height: listening ? "160px" : "100px",
-              background: "radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 70%)",
-              filter: "blur(16px)",
+              width: listening ? "180px" : "140px",
+              height: listening ? "180px" : "140px",
+              background: "radial-gradient(circle at center, rgba(168,85,247,0.15) 0%, rgba(168,85,247,0) 70%)",
+              filter: "blur(60px)",
             }}
           />
           {/* Orb */}
