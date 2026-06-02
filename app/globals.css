@@ -193,3 +193,33 @@ html.light {
 * {
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-elevated {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+html.light .glass {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+html.light .glass-elevated {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Subtle glow effect for focused elements */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+}
+
+html.light .glow-primary {
+  box-shadow: 0 0 20px rgba(8, 145, 178, 0.1);
+}

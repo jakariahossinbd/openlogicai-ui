@@ -2,44 +2,33 @@
 
 import { useState } from "react"
 import { NavRail } from "@/components/nav-rail"
-import { LeftSidebar } from "@/components/left-sidebar"
-import { TopHeader } from "@/components/top-header"
-import { CenterWorkspace } from "@/components/center-workspace"
+import { ChatSidebar } from "@/components/chat-sidebar"
+import { ConsumerCanvas } from "@/components/consumer-canvas"
+import { IdeCanvas } from "@/components/ide-canvas"
 
-type Mode = "chat" | "image" | "voice" | "code"
+export type Mode = "chat" | "image" | "voice" | "code"
 
 export default function Home() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [activeMode, setActiveMode] = useState<Mode>("chat")
 
+  const isConsumerMode = activeMode !== "code"
+
   return (
-    <div className="flex h-screen w-full flex-col overflow-hidden bg-background">
-      {/* Top Header */}
-      <TopHeader
-        isSidebarCollapsed={sidebarCollapsed}
-        onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-      />
+    <div className="flex h-screen w-full overflow-hidden bg-background">
+      {/* Slim Activity Bar (VS Code style) */}
+      <NavRail activeMode={activeMode} onModeChange={setActiveMode} />
 
-      {/* Main Content */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Slim Activity Bar */}
-        <NavRail activeItem={activeMode} onItemClick={(id) => {
-          if (id === "chat" || id === "image" || id === "voice" || id === "code") {
-            setActiveMode(id as Mode)
-          }
-        }} />
-
-        {/* Persistent Chat Sidebar */}
-        <LeftSidebar
-          isCollapsed={sidebarCollapsed}
-          onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
-          activeMode={activeMode}
-          onModeChange={setActiveMode}
-        />
-
-        {/* Dynamic Central Canvas */}
-        <CenterWorkspace activeMode={activeMode} />
-      </div>
+      {/* Dynamic Layout based on mode */}
+      {isConsumerMode ? (
+        /* Consumer Mode: Wide canvas with bottom input */
+        <ConsumerCanvas activeMode={activeMode} onModeChange={setActiveMode} />
+      ) : (
+        /* Code Mode: IDE with sidebar chat */
+        <div className="flex flex-1 overflow-hidden">
+          <ChatSidebar />
+          <IdeCanvas />
+        </div>
+      )}
     </div>
   )
 }
